@@ -1,0 +1,433 @@
+$ runkit lint
+Checked 19 files in 59ms. No violations found.
+
+  x jsx-a11y(label-has-associated-control): A form label must have accessible text.
+     ,-[packages/web/src/web/components/inspector.tsx:287:17]
+ 286 |                 ))}
+ 287 |                 <label className="color-custom" title="Couleur personnalisée">
+     :                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 288 |                   <input
+     `----
+  help: Ensure the label either has text inside it or is accessibly labelled using an attribute such as `aria-label`, or `aria-labelledby`. You can mark more attributes as accessible labels by configuring the `labelAttributes` option.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+    ,-[packages/web/src/web/components/inspector.tsx:36:9]
+ 35 |           <div>
+ 36 | ,->         <input
+ 37 | |             type="number"
+ 38 | |             value={draft}
+ 39 | |             step={step}
+ 40 | |             min={min}
+ 41 | |             max={max}
+ 42 | |             onChange={(e) => setDraft(e.target.value)}
+ 43 | |             onBlur={() => {
+ 44 | |               const v = Number(draft);
+ 45 | |               if (draft !== "" && Number.isFinite(v) && v >= min && v <= max)
+ 46 | |                 onChange(v);
+ 47 | |               else setDraft(String(value));
+ 48 | |             }}
+ 49 | |             onKeyDown={(e) => {
+ 50 | |               if (e.key === "Enter") e.currentTarget.blur();
+ 51 | |             }}
+ 52 | `->         />
+ 53 |             <small>{unit}</small>
+    `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/inspector.tsx:114:17]
+ 113 |                     <span>Nom</span>
+ 114 | ,->                 <input
+ 115 | |                     key={w.id + w.name}
+ 116 | |                     defaultValue={w.name}
+ 117 | |                     maxLength={60}
+ 118 | |                     onBlur={(e) => patch({ name: e.target.value || w.name })}
+ 119 | `->                 />
+ 120 |                   </label>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/inspector.tsx:279:19]
+ 278 |                     ].map((c) => (
+ 279 | ,->                   <button
+ 280 | |                       key={c}
+ 281 | |                       className={w.color === c ? "selected" : ""}
+ 282 | |                       style={{ background: c }}
+ 283 | |                       onClick={() => patch({ color: c })}
+ 284 | |                       title={`Couleur ${c}`}
+ 285 | `->                   />
+ 286 |                     ))}
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/inspector.tsx:288:19]
+ 287 |                     <label className="color-custom" title="Couleur personnalisée">
+ 288 | ,->                   <input
+ 289 | |                       type="color"
+ 290 | |                       value={w.color}
+ 291 | |                       onChange={(e) => patch({ color: e.target.value })}
+ 292 | `->                   />
+ 293 |                     </label>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/inspector.tsx:339:13]
+ 338 |                 <span>Mobilier de démonstration</span>
+ 339 | ,->             <input
+ 340 | |                 type="checkbox"
+ 341 | |                 checked={p.furniture}
+ 342 | |                 onChange={(e) =>
+ 343 | |                   updateProject({ ...p, furniture: e.target.checked })
+ 344 | |                 }
+ 345 | `->             />
+ 346 |               </label>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(prefer-tag-over-role): Prefer `dialog` over `role` attribute `dialog`.
+    ,-[packages/web/src/web/components/import-dialog.tsx:84:9]
+ 83 |         className="import-modal"
+ 84 |         role="dialog"
+    :         ^^^^^^^^^^^^^
+ 85 |         aria-modal="true"
+    `----
+  help: Replace HTML elements with `role` attribute `dialog` to corresponding semantic HTML tag `dialog`.
+
+  x jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+    ,-[packages/web/src/web/components/import-dialog.tsx:81:6]
+ 80 |   return (
+ 81 |     <div className="modal-backdrop" onClick={close}>
+    :      ^^^
+ 82 |       <div
+    `----
+  help: Add a role attribute to this element, or use a semantic HTML element instead.
+
+  x jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+     ,-[packages/web/src/web/components/import-dialog.tsx:99:12]
+  98 |         <div className="import-body">
+  99 |           <div
+     :            ^^^
+ 100 |             className={`drop-zone ${image ? "with-image" : ""}`}
+     `----
+  help: Add a role attribute to this element, or use a semantic HTML element instead.
+
+  x jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+    ,-[packages/web/src/web/components/import-dialog.tsx:82:8]
+ 81 |     <div className="modal-backdrop" onClick={close}>
+ 82 |       <div
+    :        ^^^
+ 83 |         className="import-modal"
+    `----
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/import-dialog.tsx:149:11]
+ 148 |               </div>
+ 149 | ,->           <input
+ 150 | |               ref={input}
+ 151 | |               hidden
+ 152 | |               type="file"
+ 153 | |               accept="image/png,image/jpeg,image/webp"
+ 154 | |               onChange={(e) => {
+ 155 | |                 const f = e.target.files?.[0];
+ 156 | |                 if (f) void file(f);
+ 157 | |                 e.target.value = "";
+ 158 | |               }}
+ 159 | `->           />
+ 160 |               <div className="import-settings">
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/import-dialog.tsx:167:17]
+ 166 |                   <div>
+ 167 | ,->                 <input
+ 168 | |                     type="number"
+ 169 | |                     min={1}
+ 170 | |                     max={200}
+ 171 | |                     value={width}
+ 172 | |                     onChange={(e) => {
+ 173 | |                       setWidth(Number(e.target.value));
+ 174 | |                       setWalls(null);
+ 175 | |                     }}
+ 176 | `->                 />
+ 177 |                     <small>m</small>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/import-dialog.tsx:188:15]
+ 187 |                   </span>
+ 188 | ,->               <input
+ 189 | |                   type="range"
+ 190 | |                   min={30}
+ 191 | |                   max={220}
+ 192 | |                   value={threshold}
+ 193 | |                   onChange={(e) => {
+ 194 | |                     setThreshold(Number(e.target.value));
+ 195 | |                     setWalls(null);
+ 196 | |                   }}
+ 197 | `->               />
+ 198 |                 </label>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/components/import-dialog.tsx:203:15]
+ 202 |                   </span>
+ 203 | ,->               <input
+ 204 | |                   type="range"
+ 205 | |                   min={0.3}
+ 206 | |                   max={3}
+ 207 | |                   step={0.1}
+ 208 | |                   value={min}
+ 209 | |                   onChange={(e) => {
+ 210 | |                     setMin(Number(e.target.value));
+ 211 | |                     setWalls(null);
+ 212 | |                   }}
+ 213 | `->               />
+ 214 |                 </label>
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+    ,-[packages/web/src/web/components/import-dialog.tsx:81:5]
+ 80 |   return (
+ 81 |     <div className="modal-backdrop" onClick={close}>
+    :     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 82 |       <div
+    `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+    ,-[packages/web/src/web/components/import-dialog.tsx:82:7]
+ 81 |         <div className="modal-backdrop" onClick={close}>
+ 82 | ,->       <div
+ 83 | |           className="import-modal"
+ 84 | |           role="dialog"
+ 85 | |           aria-modal="true"
+ 86 | |           aria-label="Importer un plan"
+ 87 | |           onClick={(e) => e.stopPropagation()}
+ 88 | `->       >
+ 89 |             <div className="modal-head">
+    `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/components/import-dialog.tsx:99:11]
+  98 |             <div className="import-body">
+  99 | ,->           <div
+ 100 | |               className={`drop-zone ${image ? "with-image" : ""}`}
+ 101 | |               onDragOver={(e) => e.preventDefault()}
+ 102 | |               onDrop={(e) => {
+ 103 | |                 e.preventDefault();
+ 104 | |                 const f = e.dataTransfer.files[0];
+ 105 | |                 if (f) void file(f);
+ 106 | |               }}
+ 107 | |               onClick={() => !image && input.current?.click()}
+ 108 | `->           >
+ 109 |                 {image ? (
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x react-hooks(exhaustive-deps): React Hook useEffect has a missing dependency: 'project'
+     ,-[packages/web/src/web/components/scene.tsx:239:6]
+ 228 |   useEffect(() => {
+ 229 |     const b = bounds(project),
+     :                      ^^^|^^^
+     :                         `-- useEffect uses `project` here
+ 230 |       size = Math.max(b.width, b.depth, 5),
+ 231 |       cx = (b.minX + b.maxX) / 2,
+ 232 |       cz = (b.minZ + b.maxZ) / 2;
+ 233 |     camera.position.set(cx + size * 0.9, size * 0.95, cz + size * 1.05);
+ 234 |     camera.lookAt(cx, 0, cz);
+ 235 |     if (controls && "target" in controls) {
+ 236 |       (controls as any).target.set(cx, 0, cz);
+ 237 |       (controls as any).update();
+ 238 |     }
+ 239 |   }, [reset, camera, controls]);
+     :      ^^^^^^^^^^^^^^^^^^^^^^^^^
+ 240 |   return null;
+     `----
+  help: Either include it or remove the dependency array.
+
+  x jsx-a11y(prefer-tag-over-role): Prefer `output` over `role` attribute `status`.
+     ,-[packages/web/src/web/pages/editor.tsx:689:32]
+ 688 |       {notice && (
+ 689 |         <div className="toast" role="status">
+     :                                ^^^^^^^^^^^^^
+ 690 |           <InfoIcon />
+     `----
+  help: Replace HTML elements with `role` attribute `status` to corresponding semantic HTML tag `output`.
+
+  x jsx-a11y(prefer-tag-over-role): Prefer `dialog` over `role` attribute `dialog`.
+     ,-[packages/web/src/web/pages/editor.tsx:717:13]
+ 716 |             className="small-modal"
+ 717 |             role="dialog"
+     :             ^^^^^^^^^^^^^
+ 718 |             aria-modal="true"
+     `----
+  help: Replace HTML elements with `role` attribute `dialog` to corresponding semantic HTML tag `dialog`.
+
+  x jsx-a11y(prefer-tag-over-role): Prefer `dialog` over `role` attribute `dialog`.
+     ,-[packages/web/src/web/pages/editor.tsx:777:13]
+ 776 |             className="small-modal"
+ 777 |             role="dialog"
+     :             ^^^^^^^^^^^^^
+ 778 |             aria-modal="true"
+     `----
+  help: Replace HTML elements with `role` attribute `dialog` to corresponding semantic HTML tag `dialog`.
+
+  x jsx-a11y(prefer-tag-over-role): Prefer `dialog` over `role` attribute `dialog`.
+     ,-[packages/web/src/web/pages/editor.tsx:837:13]
+ 836 |             className="small-modal help-modal"
+ 837 |             role="dialog"
+     :             ^^^^^^^^^^^^^
+ 838 |             aria-modal="true"
+     `----
+  help: Replace HTML elements with `role` attribute `dialog` to corresponding semantic HTML tag `dialog`.
+
+  x jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+     ,-[packages/web/src/web/pages/editor.tsx:714:10]
+ 713 |       {modal === "projects" && (
+ 714 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :          ^^^
+ 715 |           <div
+     `----
+  help: Add a role attribute to this element, or use a semantic HTML element instead.
+
+  x jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+     ,-[packages/web/src/web/pages/editor.tsx:774:10]
+ 773 |       {modal === "new" && (
+ 774 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :          ^^^
+ 775 |           <div
+     `----
+  help: Add a role attribute to this element, or use a semantic HTML element instead.
+
+  x jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+     ,-[packages/web/src/web/pages/editor.tsx:834:10]
+ 833 |       {modal === "help" && (
+ 834 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :          ^^^
+ 835 |           <div
+     `----
+  help: Add a role attribute to this element, or use a semantic HTML element instead.
+
+  x jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+     ,-[packages/web/src/web/pages/editor.tsx:715:12]
+ 714 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 715 |           <div
+     :            ^^^
+ 716 |             className="small-modal"
+     `----
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  x jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+     ,-[packages/web/src/web/pages/editor.tsx:775:12]
+ 774 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 775 |           <div
+     :            ^^^
+ 776 |             className="small-modal"
+     `----
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  x jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+     ,-[packages/web/src/web/pages/editor.tsx:835:12]
+ 834 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 835 |           <div
+     :            ^^^
+ 836 |             className="small-modal help-modal"
+     `----
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  x jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+     ,-[packages/web/src/web/pages/editor.tsx:677:7]
+ 676 |           </footer>
+ 677 | ,->       <input
+ 678 | |           ref={fileRef}
+ 679 | |           hidden
+ 680 | |           type="file"
+ 681 | |           accept=".json"
+ 682 | |           onChange={(e) => {
+ 683 | |             const f = e.target.files?.[0];
+ 684 | |             if (f) void file(f);
+ 685 | |             e.target.value = "";
+ 686 | |           }}
+ 687 | `->       />
+ 688 |           {notice && (
+     `----
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:714:9]
+ 713 |       {modal === "projects" && (
+ 714 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 715 |           <div
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:715:11]
+ 714 |             <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 715 | ,->           <div
+ 716 | |               className="small-modal"
+ 717 | |               role="dialog"
+ 718 | |               aria-modal="true"
+ 719 | |               onClick={(e) => e.stopPropagation()}
+ 720 | `->           >
+ 721 |                 <div className="modal-head">
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:774:9]
+ 773 |       {modal === "new" && (
+ 774 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 775 |           <div
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:775:11]
+ 774 |             <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 775 | ,->           <div
+ 776 | |               className="small-modal"
+ 777 | |               role="dialog"
+ 778 | |               aria-modal="true"
+ 779 | |               onClick={(e) => e.stopPropagation()}
+ 780 | `->           >
+ 781 |                 <div className="modal-head">
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:834:9]
+ 833 |       {modal === "help" && (
+ 834 |         <div className="modal-backdrop" onClick={() => setModal(null)}>
+     :         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 835 |           <div
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+  x jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+     ,-[packages/web/src/web/pages/editor.tsx:835:11]
+ 834 |             <div className="modal-backdrop" onClick={() => setModal(null)}>
+ 835 | ,->           <div
+ 836 | |               className="small-modal help-modal"
+ 837 | |               role="dialog"
+ 838 | |               aria-modal="true"
+ 839 | |               onClick={(e) => e.stopPropagation()}
+ 840 | `->           >
+ 841 |                 <div className="modal-head">
+     `----
+  help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+
+Found 0 warnings and 35 errors.
+Finished in 299ms on 56 files with 152 rules using 2 threads.
+error: script "lint" exited with code 1
